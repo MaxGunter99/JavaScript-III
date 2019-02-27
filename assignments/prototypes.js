@@ -41,6 +41,66 @@
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
+//GAMEOBJECTINFO
+function GameObject(object) {
+  this.createdAt = object.createdAt;
+  this.name = object.name;
+  this.dimensions = object.dimensions;
+  
+}
+
+GameObject.prototype = Object.create(Humanoid.prototype);
+Humanoid.prototype.destroy = function() {
+  return `${this.name} was removed from the game.`;
+}
+
+const gameObject = new GameObject ({
+  createdAt : Date(),
+  name: 'Star Lord',
+  dimensions: {
+    length: 1,
+    width: 1,
+    height: 3,
+  },
+  
+});
+console.log(gameObject);
+
+
+//CHARACTERSTATS
+function CharacterStats(object) {
+  this.healthPoints = object.healthPoints;
+  GameObject.prototype = Object.create(GameObject.prototype);
+  Humanoid.prototype.takeDamage = function() {
+    return `${this.name} took damage.`;
+  };
+}
+
+const characterStats = new CharacterStats ({
+  healthPoints : 7,
+});
+console.log(characterStats);
+
+
+//HUMANIOD
+function Humanoid (object) {
+  this.team = object.team;
+  this.weapons = object.weapons;
+  this.language = object.language;
+}  
+
+GameObject.prototype = Object.create(Humanoid.prototype);
+Humanoid.prototype.greet = function() {
+  return `${this.name} offers a greeting in ${this.language}`;
+}
+
+const starLord = new Humanoid ({
+  team: 'Gaurdian of the Galaxy',
+  weapons: ['Lazer Pistol'],
+  language: 'English',
+});
+console.log(starLord);
+
 /*
   const mage = new Humanoid({
     createdAt: new Date(),
